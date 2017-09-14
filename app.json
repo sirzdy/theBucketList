@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/plan/plan",
+    "pages/list/list",
+    "pages/setting/setting"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarTitleText": "遗愿清单",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#1296db",
+    "color": "#ddd",
+    "selectedColor": "#fff",
+    "borderStyle": "white",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/plan/plan",
+        "text": "计划",
+        "iconPath": "images/plan.png",
+        "selectedIconPath": "images/plan-s.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "遗愿",
+        "iconPath": "images/list.png",
+        "selectedIconPath": "images/list-s.png"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "设置",
+        "iconPath": "images/setting.png",
+        "selectedIconPath": "images/setting-s.png"
+      }
+    ]
+  }
+}

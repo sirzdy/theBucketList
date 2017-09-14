@@ -1,0 +1,47 @@
+<!--pages/list/list.wxml-->
+<view>
+  <view class='box flex-column' style="width:100%;">
+    <view style='overflow-x:hidden;overflow-y:scroll;width:100%;' class='flex-column-emp'>
+      <view wx:for="{{theShowBucketList}}" wx:for-item="ToDo" wx:key="id" class="to-do ">
+      <!-- {{(ToDo.done&&!show.bucketDone)?'hide':''}} -->
+        <view class="brief flex-row" data-todo="{{ToDo}}"  bindtap='showDetail'>
+          <view class='badge'>{{index+1}}</view>
+          <view class='flex-row-emp'>
+            <input wx:if="{{showDetail[ToDo.id]}}" confirm-type='done' data-todo="{{ToDo}}" data-id="{{ToDo.id}}" value='{{ToDo.content}}' bindblur='updateContent'></input>
+            <text wx:else>{{ToDo.content}}</text>
+          </view>
+          <image src='../../images/info.png' data-id="{{ToDo.id}}" style='width:20px;height:20px;' catchtap='setInfo'></image>
+        </view>
+        <view wx:if="{{showDetail[ToDo.id]}}" class='info'>
+          <view class='flex-row'>
+            是否实现：
+            <view class='flex-row' style='width:25px;margin-right:5px;margin-left:0;'>
+              <image catchtap="checkboxChange" data-id="{{ToDo.id}}" data-value="false" wx:if="{{ToDo.done}}" src='../../images/checkbox.png' style='width:20px;height:20px;'></image>
+              <image catchtap="checkboxChange" data-id="{{ToDo.id}}" data-value="true" wx:else src='../../images/checkbox-empty.png' style='width:20px;height:20px;'></image>
+            </view>
+            <picker wx:if="{{ToDo.done}}" class='flex-row-emp' mode="date" value="{{ToDo.date}}" bindchange="bindDateChange" data-id="{{ToDo.id}}">
+              <view class="picker">
+                实现时间： {{ToDo.finishTime||'未添加'}}
+              </view>
+            </picker>
+            <view wx:else class='flex-row-emp'></view>
+            <image src='../../images/del.png' data-todo="{{ToDo}}" style="width:15px;height:15px;margin:0 15px" bindtap='deleteToDo'></image>
+          </view>
+          <view class='flex-row'>
+            <!-- <view>描述记录：</view> -->
+            <view class='flex-row-emp' style='width:100%;'>
+              <textarea confirm-type='done' style='height:100px;width:100%;border-top:1px dotted #eee' data-todo="{{ToDo}}" data-id="{{ToDo.id}}" value='{{ToDo.detail}}' bindblur='updateDetail' placeholder='请输入备注' maxlength='140'></textarea>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="hint">
+        <text>感谢使用❤️遗愿清单</text>
+      </view>
+    </view>
+    <view style='height:40px;min-height:40px;width:100%;background:#f8f8f8;' class='flex-row'>
+      <input class='flex-row-emp' style='font-size:14px;margin-left:5px;' value='{{content}}' placeholder="新遗愿" bindinput="bindEventChange"></input>
+      <image src='../../images/send.png'  style='width:20px;height:20px;margin-right:5px;' bindtap='addEvent'></image>
+    </view>
+  </view>
+</view>

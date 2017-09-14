@@ -1,0 +1,110 @@
+<!--setting.wxml-->
+<!-- <view class='flex-row-emp flex-column' style='padding:0 5px;font-size:12px;'>
+  <view class='flex-column-emp flex-row' style='width:100%;'>
+    <view style='border:1px dotted #ccc;color:#999;'>显示</view>
+    <view class="condition" bindtap="toggleDone" style="{{show.done?'color:#ccc':''}}">已完成</view>
+    <view style='width:5px;'></view>
+    <view class="condition" bindtap="togglePast" style="{{show.past?'color:#ccc':''}}">已过期</view>
+    <view style='width:5px;'></view>
+    <view class="condition" data-period="day" bindtap="setPeriod" style="{{show.period=='day'?'color:#ccc':''}}">日</view>
+    <view class="condition" data-period="week" bindtap="setPeriod" style="{{show.period=='week'?'color:#ccc':''}}">周</view>
+    <view class="condition" data-period="month" bindtap="setPeriod" style="{{show.period=='month'?'color:#ccc':''}}">月</view>
+    <view class="condition" data-period="year" bindtap="setPeriod" style="{{show.period=='year'?'color:#ccc':''}}">年</view>
+    <view class="condition" data-period="all" bindtap="setPeriod" style="{{show.period=='all'?'color:#ccc':''}}">全</view>
+    <view class='flex-row-emp'></view>
+  </view>
+  <view class='flex-column-emp flex-row' style='width:100%;'>
+    <view style='border:1px dotted #ccc;color:#999;'>排序</view>
+    <view class="condition" data-sort="plan" bindtap="setSort" style="{{show.sort=='plan'?'color:#ccc':''}}">计划时间</view>
+    <view class="condition" data-sort="add" bindtap="setSort" style="{{show.sort=='add'?'color:#ccc':''}}">添加时间</view>
+    <view class="condition" data-sort="level" bindtap="setSort" style="{{show.sort=='level'?'color:#ccc':''}}">重要程度</view>
+    <view class="condition" data-sort="tag" bindtap="setSort" style="{{show.sort=='tag'?'color:#ccc':''}}">标签</view>
+    <view class='flex-row-emp'></view>
+  </view>
+</view> -->
+
+<!-- <view class="userinfo">
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+  <block wx:else>
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <view class='flex-row'>
+      <button size='mini' bindtap='upload'>上传</button>
+      <button size='mini'>下载</button>
+      <button size='mini'>合并</button>
+    </view>
+  </block>
+</view> -->
+
+
+
+<view class='setting-item flex-row'>
+  <text>计划显示设置</text>
+</view>
+<view class='setting-item flex-row'>
+  <view>已完成</view>
+  <view class='flex-row-emp'></view>
+  <switch bindchange="toggleDone" checked="{{show.done}}" />
+</view>
+<view class='setting-item flex-row'>
+  <view>已过期</view>
+  <view class='flex-row-emp'></view>
+  <switch bindchange="togglePast" checked="{{show.past}}" />
+</view>
+<view class='setting-item flex-row'>
+  <view>筛选</view>
+  <view class='flex-row-emp'></view>
+  <view class="condition" data-period="day" bindtap="setPeriod" style="{{show.period=='day'?'color:#ccc':''}}">日</view>
+  <view class="condition" data-period="week" bindtap="setPeriod" style="{{show.period=='week'?'color:#ccc':''}}">周</view>
+  <view class="condition" data-period="month" bindtap="setPeriod" style="{{show.period=='month'?'color:#ccc':''}}">月</view>
+  <view class="condition" data-period="year" bindtap="setPeriod" style="{{show.period=='year'?'color:#ccc':''}}">年</view>
+  <view class="condition" data-period="all" bindtap="setPeriod" style="{{show.period=='all'?'color:#ccc':''}}">全</view>
+  <!-- <radio-group class="radio-group" bindchange="setPeriod">
+    <label class="radio">
+      <radio value="day" checked="{{show.period=='day'}}" />日
+    </label>
+    <label class="radio">
+      <radio value="week" checked="{{show.period=='week'}}" />周
+    </label>
+    <label class="radio">
+      <radio value="month" checked="{{show.period=='month'}}" />月
+    </label>
+    <label class="radio">
+      <radio value="year" checked="{{show.period=='year'}}" />年
+    </label>
+    <label class="radio">
+      <radio value="all" checked="{{show.period=='all'}}" />全
+    </label>
+  </radio-group> -->
+</view>
+<view class='setting-item flex-row'>
+  <view>排序</view>
+  <view class='flex-row-emp'></view>
+  <!-- <radio-group class="radio-group" bindchange="setSort" >
+    <label class="radio">
+      <radio value="plan" checked="{{show.sort=='plan'}}" />计划时间
+    </label>
+    <label class="radio"> 
+      <radio value="add" checked="{{show.sort=='add'}}" />添加时间
+    </label>
+    <label class="radio">
+      <radio value="level" checked="{{show.sort=='level'}}" />重要程度
+    </label>
+    <label class="radio">
+      <radio value="tag" checked="{{show.sort=='tag'}}" />标签
+    </label>
+  </radio-group> -->
+  <view class="condition" data-sort="plan" bindtap="setSort" style="{{show.sort=='plan'?'color:#ccc':''}}">计划时间</view>
+  <view class="condition" data-sort="add" bindtap="setSort" style="{{show.sort=='add'?'color:#ccc':''}}">添加时间</view>
+  <view class="condition" data-sort="level" bindtap="setSort" style="{{show.sort=='level'?'color:#ccc':''}}">重要程度</view>
+  <view class="condition" data-sort="tag" bindtap="setSort" style="{{show.sort=='tag'?'color:#ccc':''}}">标签</view>
+</view>
+
+<view class='setting-item flex-row'>
+  <text>遗愿显示设置</text>
+</view>
+<view class='setting-item flex-row'>
+  <view>已完成</view>
+  <view class='flex-row-emp'></view>
+  <switch bindchange="toggleBucketDone" checked="{{show.bucketDone}}" />
+</view>

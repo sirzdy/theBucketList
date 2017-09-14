@@ -1,0 +1,32 @@
+/* pages/list/list.wxss */
+
+.brief {
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  padding: 0 5px;
+  position: relative;
+}
+.to-do{
+  border-bottom:1px solid #ddd;
+}
+.badge {
+  width: 30px;
+  border-radius: 15px;
+  text-align: center;
+  height: 20px;
+  background: #1296db;
+  line-height: 20px;
+  color: #fff;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.info {
+  border-top:1px dotted #eee;
+  height:125px;
+  padding:5px;
+  width:100%;
+  line-height:25px;
+  font-size:13px;
+}

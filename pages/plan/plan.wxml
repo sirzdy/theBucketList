@@ -1,0 +1,89 @@
+<!--index.wxml-->
+<view class='box'>
+  <view class='flex-column-emp' style='overflow-y:scroll;overflow-x:hidden;width:100%;'>
+    <view wx:for="{{theShowToDoList}}" wx:for-item="ToDo" wx:key="id" class="to-do" wx:if="{{!ToDo.hide}}">
+      <view class="flex-row {{ToDo.done?'done':''}}" data-id="{{ToDo.id}}" bindtouchstart='showFnAreaStart' bindtouchmove='showFnAreaMove' bindtouchend='showFnAreaEnd' bindtouchcancel='showFnAreaEnd' style='margin-left:-{{fnWidth[ToDo.id]||0}}px;margin-right:{{fnWidth[ToDo.id]||0}}px;'
+        data-todo="{{ToDo}}" bindtap='showDetail'>
+        <!-- <checkbox-group bindchange="checkboxChange" data-id="{{ToDo.id}}">
+          <checkbox value="true" checked="{{ToDo.done}}" />
+        </checkbox-group> -->
+        <view class='flex-row' style='width:25px;margin-right:5px;margin-left:0;'>
+          <image catchtap="checkboxChange" data-id="{{ToDo.id}}" data-value="false" wx:if="{{ToDo.done}}" src='../../images/checkbox.png' style='width:20px;height:20px;'></image>
+          <image catchtap="checkboxChange" data-id="{{ToDo.id}}" data-value="true" wx:else src='../../images/checkbox-empty.png' style='width:20px;height:20px;'></image>
+        </view>
+        <view wx:if="{{ToDo.tag}}" class='badge' style="background:{{badge[ToDo.tag]}};">
+          {{ToDo.tag}}
+        </view>
+        <image wx:if="{{ToDo.level=='!'}}" src='../../images/low.png' style='width:20px;height:20px;'></image>
+        <image wx:if="{{ToDo.level=='!!'}}" src='../../images/mid.png' style='width:20px;height:20px;'></image>
+        <image wx:if="{{ToDo.level=='!!!'}}" src='../../images/high.png' style='width:20px;height:20px;'></image>
+        <view class='to-do-content'>
+          {{ToDo.content}}
+        </view>
+        <!-- <view class='flex-row-emp'></view> -->
+        <view style="font-size:12px;min-width:60px;width:60px;text-align:right;">
+          {{ToDo.showTime}}
+        </view>
+      </view>
+      <view disable-scroll="true" class='fn-mask' data-id="{{ToDo.id}}" bindtouchstart='hideFnArea' bindtouchmove='hideFnArea' bindtouchend='hideFnArea' bindtouchcancel='hideFnArea' wx:if="{{fnMaskShow[ToDo.id]|false}}"></view>
+      <view class='fn-area flex-row' style='width:{{fnWidth[ToDo.id]||0}}px;'>
+        <view class='fn-btn-delete flex-row-emp' data-id="{{ToDo.id}}" data-todo="{{ToDo}}" bindtap='deleteToDo'>
+          <image src='../../images/delete.png' class='center' style='width:60%;height:60%;'></image>
+        </view>
+        <view class='fn-btn-edit flex-row-emp' data-id="{{ToDo.id}}" data-todo="{{ToDo}}" catchtap='editToDo'>
+          <image src='../../images/edit.png' class='center' style='width:60%;height:60%;'></image>
+        </view>
+      </view>
+    </view>
+    <view class="hint">
+      <text>感谢使用❤️计划清单</text>
+    </view>
+  </view>
+</view>
+<view style='width:50px;height:50px;position:fixed;right:0;bottom:0;'>
+  <image class='btn-add' src='../../images/add.png' bindtap='showPopUp'></image>
+</view>
+<view wx:if="{{popUpShow}}">
+  <view class='mask' bindtap='hidePopUp'></view>
+  <view class='pop-up flex-column'>
+    <view class=" pop-up-title flex-row">
+      <text wx:if="{{updateSign}}">编辑事件</text>
+      <text wx:else>新增事件</text>
+    </view>
+    <view class="section flex-row">
+      <input placeholder="请输入事件" auto-focus bindinput="bindContentInput" value="{{ToDoDetail.content}}" />
+    </view>
+    <view class="section flex-row">
+      <picker mode="date" value="{{ToDoDetail.date}}" bindchange="bindDateChange">
+        <view class="picker">
+          日期: {{ToDoDetail.date}}
+        </view>
+      </picker>
+    </view>
+    <view class="section flex-row">
+      <picker mode="time" value="{{ToDoDetail.time}}" bindchange="bindTimeChange">
+        <view class="picker">
+          时间: {{ToDoDetail.time}}
+        </view>
+      </picker>
+    </view>
+    <view class="section flex-row">
+      <picker mode="selector" bindchange="bindTagChange" value="{{index}}" range="{{tagsArray}}">
+        <view class="picker">
+          标签: {{ToDoDetail.tag}}
+        </view>
+      </picker>
+    </view>
+    <view class="section flex-row">
+      <picker mode="selector" bindchange="bindLevelChange" value="{{index}}" range="{{levelsArray}}">
+        <view class="picker">
+          等级: {{ToDoDetail.level}}
+        </view>
+      </picker>
+    </view>
+    <view class="section flex-row" style='border-bottom-left-radius:5px;border-bottom-right-radius:5px;'>
+      <button class='flex-row-emp' style='max-width:70px;' type="default" size='mini' bindtap='hidePopUp'>取消</button>
+      <button class='flex-row-emp' style='max-width:70px;' type="default" size='mini' bindtap='confirm' disabled="{{!ToDoDetail.content||!ToDoDetail.date||!ToDoDetail.time||!ToDoDetail.tag||!ToDoDetail.level}}">确定</button>
+    </view>
+  </view>
+</view>
